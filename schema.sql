@@ -34,78 +34,67 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: event_expenses; Type: TABLE; Schema: public; Owner: Matthieu
---
-
-CREATE TABLE public.event_expenses (
-    id uuid NOT NULL,
-    eventid uuid,
-    expenseid uuid
-);
-
-
-ALTER TABLE public.event_expenses OWNER TO "Matthieu";
-
---
--- Name: events; Type: TABLE; Schema: public; Owner: Matthieu
+-- Name: events; Type: TABLE; Schema: public; Owner: Julien
 --
 
 CREATE TABLE public.events (
-    eventid uuid NOT NULL,
+    id uuid NOT NULL,
     name character varying,
     status character varying,
-    owner uuid
+    owner_id uuid
 );
 
 
-ALTER TABLE public.events OWNER TO "Matthieu";
+ALTER TABLE public.events OWNER TO "Julien";
 
 --
--- Name: expense_participants; Type: TABLE; Schema: public; Owner: Matthieu
+-- Name: expense_participants; Type: TABLE; Schema: public; Owner: Julien
 --
 
 CREATE TABLE public.expense_participants (
     id uuid NOT NULL,
-    expenseid uuid,
-    participantid uuid
+    expense_id uuid,
+    participant_id uuid
 );
 
 
-ALTER TABLE public.expense_participants OWNER TO "Matthieu";
+ALTER TABLE public.expense_participants OWNER TO "Julien";
 
 --
--- Name: expenses; Type: TABLE; Schema: public; Owner: Matthieu
+-- Name: expenses; Type: TABLE; Schema: public; Owner: Julien
 --
 
 CREATE TABLE public.expenses (
-    expenseid uuid NOT NULL,
+    id uuid NOT NULL,
     date date,
-    amount_paid smallint,
+    amount smallint,
     description character varying,
-    paid_by uuid
+    paid_by uuid,
+    event_id uuid
 );
 
 
-ALTER TABLE public.expenses OWNER TO "Matthieu";
+ALTER TABLE public.expenses OWNER TO "Julien";
 
 --
--- Name: participants; Type: TABLE; Schema: public; Owner: Matthieu
+-- Name: participants; Type: TABLE; Schema: public; Owner: Julien
 --
 
 CREATE TABLE public.participants (
-    participantid uuid NOT NULL,
-    nickname character varying
+    id uuid NOT NULL,
+    nickname character varying,
+    user_id uuid
 );
 
 
-ALTER TABLE public.participants OWNER TO "Matthieu";
+ALTER TABLE public.participants OWNER TO "Julien";
 
 --
--- Name: userlogin; Type: TABLE; Schema: public; Owner: Matthieu
+-- Name: userlogin; Type: TABLE; Schema: public; Owner: Julien
 --
 
 CREATE TABLE public.userlogin (
-    userloginid uuid NOT NULL,
+    id uuid NOT NULL,
     last_name character varying,
     first_name character varying,
     email character varying,
@@ -113,74 +102,58 @@ CREATE TABLE public.userlogin (
 );
 
 
-ALTER TABLE public.userlogin OWNER TO "Matthieu";
+ALTER TABLE public.userlogin OWNER TO "Julien";
 
 --
--- Data for Name: event_expenses; Type: TABLE DATA; Schema: public; Owner: Matthieu
+-- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: Julien
 --
 
-COPY public.event_expenses (id, eventid, expenseid) FROM stdin;
+COPY public.events (id, name, status, owner_id) FROM stdin;
 \.
 
 
 --
--- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: Matthieu
+-- Data for Name: expense_participants; Type: TABLE DATA; Schema: public; Owner: Julien
 --
 
-COPY public.events (eventid, name, status, owner) FROM stdin;
+COPY public.expense_participants (id, expense_id, participant_id) FROM stdin;
 \.
 
 
 --
--- Data for Name: expense_participants; Type: TABLE DATA; Schema: public; Owner: Matthieu
+-- Data for Name: expenses; Type: TABLE DATA; Schema: public; Owner: Julien
 --
 
-COPY public.expense_participants (id, expenseid, participantid) FROM stdin;
+COPY public.expenses (id, date, amount, description, paid_by, event_id) FROM stdin;
 \.
 
 
 --
--- Data for Name: expenses; Type: TABLE DATA; Schema: public; Owner: Matthieu
+-- Data for Name: participants; Type: TABLE DATA; Schema: public; Owner: Julien
 --
 
-COPY public.expenses (expenseid, date, amount_paid, description, paid_by) FROM stdin;
+COPY public.participants (id, nickname, user_id) FROM stdin;
 \.
 
 
 --
--- Data for Name: participants; Type: TABLE DATA; Schema: public; Owner: Matthieu
+-- Data for Name: userlogin; Type: TABLE DATA; Schema: public; Owner: Julien
 --
 
-COPY public.participants (participantid, nickname) FROM stdin;
+COPY public.userlogin (id, last_name, first_name, email, password) FROM stdin;
 \.
 
 
 --
--- Data for Name: userlogin; Type: TABLE DATA; Schema: public; Owner: Matthieu
---
-
-COPY public.userlogin (userloginid, last_name, first_name, email, password) FROM stdin;
-\.
-
-
---
--- Name: event_expenses event_expenses_pkey; Type: CONSTRAINT; Schema: public; Owner: Matthieu
---
-
-ALTER TABLE ONLY public.event_expenses
-    ADD CONSTRAINT event_expenses_pkey PRIMARY KEY (id);
-
-
---
--- Name: events events_pkey; Type: CONSTRAINT; Schema: public; Owner: Matthieu
+-- Name: events events_pkey; Type: CONSTRAINT; Schema: public; Owner: Julien
 --
 
 ALTER TABLE ONLY public.events
-    ADD CONSTRAINT events_pkey PRIMARY KEY (eventid);
+    ADD CONSTRAINT events_pkey PRIMARY KEY (id);
 
 
 --
--- Name: expense_participants expense_participants_pkey; Type: CONSTRAINT; Schema: public; Owner: Matthieu
+-- Name: expense_participants expense_participants_pkey; Type: CONSTRAINT; Schema: public; Owner: Julien
 --
 
 ALTER TABLE ONLY public.expense_participants
@@ -188,75 +161,75 @@ ALTER TABLE ONLY public.expense_participants
 
 
 --
--- Name: expenses expenses_pkey; Type: CONSTRAINT; Schema: public; Owner: Matthieu
+-- Name: expenses expenses_pkey; Type: CONSTRAINT; Schema: public; Owner: Julien
 --
 
 ALTER TABLE ONLY public.expenses
-    ADD CONSTRAINT expenses_pkey PRIMARY KEY (expenseid);
+    ADD CONSTRAINT expenses_pkey PRIMARY KEY (id);
 
 
 --
--- Name: participants participants_pkey; Type: CONSTRAINT; Schema: public; Owner: Matthieu
+-- Name: participants participants_pkey; Type: CONSTRAINT; Schema: public; Owner: Julien
 --
 
 ALTER TABLE ONLY public.participants
-    ADD CONSTRAINT participants_pkey PRIMARY KEY (participantid);
+    ADD CONSTRAINT participants_pkey PRIMARY KEY (id);
 
 
 --
--- Name: userlogin userlogin_pkey; Type: CONSTRAINT; Schema: public; Owner: Matthieu
+-- Name: userlogin userlogin_pkey; Type: CONSTRAINT; Schema: public; Owner: Julien
 --
 
 ALTER TABLE ONLY public.userlogin
-    ADD CONSTRAINT userlogin_pkey PRIMARY KEY (userloginid);
+    ADD CONSTRAINT userlogin_pkey PRIMARY KEY (id);
 
 
 --
--- Name: event_expenses event_expenses_eventid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Matthieu
---
-
-ALTER TABLE ONLY public.event_expenses
-    ADD CONSTRAINT event_expenses_eventid_fkey FOREIGN KEY (eventid) REFERENCES public.events(eventid);
-
-
---
--- Name: event_expenses event_expenses_expenseid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Matthieu
---
-
-ALTER TABLE ONLY public.event_expenses
-    ADD CONSTRAINT event_expenses_expenseid_fkey FOREIGN KEY (expenseid) REFERENCES public.expenses(expenseid);
-
-
---
--- Name: events events_owner_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Matthieu
+-- Name: events events_owner_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Julien
 --
 
 ALTER TABLE ONLY public.events
-    ADD CONSTRAINT events_owner_fkey FOREIGN KEY (owner) REFERENCES public.userlogin(userloginid);
+    ADD CONSTRAINT events_owner_fkey FOREIGN KEY (owner_id) REFERENCES public.userlogin(id);
 
 
 --
--- Name: expense_participants expense_participants_expenseid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Matthieu
---
-
-ALTER TABLE ONLY public.expense_participants
-    ADD CONSTRAINT expense_participants_expenseid_fkey FOREIGN KEY (expenseid) REFERENCES public.expenses(expenseid);
-
-
---
--- Name: expense_participants expense_participants_participantid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Matthieu
+-- Name: expense_participants expense_participants_expenseid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Julien
 --
 
 ALTER TABLE ONLY public.expense_participants
-    ADD CONSTRAINT expense_participants_participantid_fkey FOREIGN KEY (participantid) REFERENCES public.participants(participantid);
+    ADD CONSTRAINT expense_participants_expenseid_fkey FOREIGN KEY (expense_id) REFERENCES public.expenses(id);
 
 
 --
--- Name: expenses expenses_paid_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Matthieu
+-- Name: expense_participants expense_participants_participantid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Julien
+--
+
+ALTER TABLE ONLY public.expense_participants
+    ADD CONSTRAINT expense_participants_participantid_fkey FOREIGN KEY (participant_id) REFERENCES public.participants(id);
+
+
+--
+-- Name: expenses expenses_event_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Julien
 --
 
 ALTER TABLE ONLY public.expenses
-    ADD CONSTRAINT expenses_paid_by_fkey FOREIGN KEY (paid_by) REFERENCES public.participants(participantid);
+    ADD CONSTRAINT expenses_event_id_fkey FOREIGN KEY (event_id) REFERENCES public.events(id);
+
+
+--
+-- Name: expenses expenses_paid_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Julien
+--
+
+ALTER TABLE ONLY public.expenses
+    ADD CONSTRAINT expenses_paid_by_fkey FOREIGN KEY (paid_by) REFERENCES public.participants(id);
+
+
+--
+-- Name: participants participants_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Julien
+--
+
+ALTER TABLE ONLY public.participants
+    ADD CONSTRAINT participants_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.userlogin(id);
 
 
 --
