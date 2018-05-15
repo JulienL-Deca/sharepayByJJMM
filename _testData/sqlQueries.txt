@@ -1,10 +1,26 @@
 -- afficher la liste de tous les événements
+  SELECT * FROM events;
 
--- afficher les évènements d'un utilisateur
+-- afficher les évènements d'un utilisateur (utilisateur == personne avec un login)
+  SELECT * FROM events INNER JOIN userlogin ON (events.owner_id = userlogin.id) WHERE userlogin.id = '6fdf8002-7709-4211-9357-a05eb79312a2'; --userlogin.id == Martin
 
--- afficher les dépenses d'un utilisateur
+  SELECT events.id, events.name, events.owner_id, userlogin.id, userlogin.last_name, userlogin.first_name, userlogin.email FROM events INNER JOIN userlogin ON (events.owner_id = userlogin.id) WHERE userlogin.id = '6fdf8002-7709-4211-9357-a05eb79312a2';
+
+-- afficher les dépenses d'un évènement
+  SELECT * FROM expenses INNER JOIN events ON (expenses.event_id = events.id) WHERE events.id = '354e3ffb-da5b-41e8-a1cc-5d14ab91c4fd'; --events.id == réunion équipe
+
+  -- afficher les dépenses d'un évènement avecle nom des payeurs (et pas le uuid)
+  SELECT events.name, expenses.description, expenses.date, expenses.amount, participants.nickname
+  FROM expenses
+  INNER JOIN events ON (expenses.event_id = events.id)
+  INNER JOIN participants ON (participants.id = expenses.paid_by)
+  WHERE events.id = '354e3ffb-da5b-41e8-a1cc-5d14ab91c4fd';--events.id == réunion équipe
+
+-- afficher tous les participants
+  SELECT * FROM participants;
 
 -- afficher les participants d'un utilisateur
+  SELECT * FROM participants WHERE user_id = '6fdf8002-7709-4211-9357-a05eb79312a2'; -- user_id == Martin
 
 -- afficher les utilisateurs de l'application
   SELECT * FROM userlogin;
@@ -13,4 +29,4 @@
   SELECT CONCAT(first_name,' ', last_name) AS full_name, email FROM userlogin;
 
 -- afficher les infos d'un utilisateur de l'application: nom, prénom et email
-  select concat(first_name,' ', last_name) as full_name, email from userlogin WHERE id = 'b59695ff-7398-4d0b-bcdf-3b4c640f1231';
+  select concat(first_name,' ', last_name) as full_name, email from userlogin WHERE id = 'b59695ff-7398-4d0b-bcdf-3b4c640f1231'; -- id == Jiao
