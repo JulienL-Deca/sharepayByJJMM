@@ -1,0 +1,16 @@
+-- afficher la liste de tous les événements
+
+-- afficher les évènements d'un utilisateur
+
+-- afficher les dépenses d'un utilisateur
+
+-- afficher les participants d'un utilisateur
+
+-- afficher les utilisateurs de l'application
+  SELECT * FROM userlogin;
+
+-- afficher les infos de tous les utilisateurs de l'application: nom, prénom et email
+  SELECT CONCAT(first_name,' ', last_name) AS full_name, email FROM userlogin;
+
+-- afficher les infos d'un utilisateur de l'application: nom, prénom et email
+  select concat(first_name,' ', last_name) as full_name, email from userlogin WHERE id = 'b59695ff-7398-4d0b-bcdf-3b4c640f1231';
