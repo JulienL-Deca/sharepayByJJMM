@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.3 (Ubuntu 10.3-1.pgdg14.04+1)
+-- Dumped from database version 10.3
 -- Dumped by pg_dump version 10.4
 
 SET statement_timeout = 0;
@@ -29,43 +29,57 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
+--
+-- Name: uuid-ossp; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION "uuid-ossp"; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UUIDs)';
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: events; Type: TABLE; Schema: public; Owner: xxkbhzggxxcxbm
+-- Name: events; Type: TABLE; Schema: public; Owner: Julien
 --
 
 CREATE TABLE public.events (
-    id uuid NOT NULL,
+    id uuid DEFAULT public.uuid_generate_v4() NOT NULL,
     name character varying,
     status boolean,
     owner_id uuid
 );
 
 
-ALTER TABLE public.events OWNER TO xxkbhzggxxcxbm;
+ALTER TABLE public.events OWNER TO "Julien";
 
 --
--- Name: expense_participants; Type: TABLE; Schema: public; Owner: xxkbhzggxxcxbm
+-- Name: expense_participants; Type: TABLE; Schema: public; Owner: Julien
 --
 
 CREATE TABLE public.expense_participants (
-    id uuid NOT NULL,
+    id uuid DEFAULT public.uuid_generate_v4() NOT NULL,
     expense_id uuid,
     participant_id uuid
 );
 
 
-ALTER TABLE public.expense_participants OWNER TO xxkbhzggxxcxbm;
+ALTER TABLE public.expense_participants OWNER TO "Julien";
 
 --
--- Name: expenses; Type: TABLE; Schema: public; Owner: xxkbhzggxxcxbm
+-- Name: expenses; Type: TABLE; Schema: public; Owner: Julien
 --
 
 CREATE TABLE public.expenses (
-    id uuid NOT NULL,
+    id uuid DEFAULT public.uuid_generate_v4() NOT NULL,
     date date,
     amount smallint,
     description character varying,
@@ -74,27 +88,27 @@ CREATE TABLE public.expenses (
 );
 
 
-ALTER TABLE public.expenses OWNER TO xxkbhzggxxcxbm;
+ALTER TABLE public.expenses OWNER TO "Julien";
 
 --
--- Name: participants; Type: TABLE; Schema: public; Owner: xxkbhzggxxcxbm
+-- Name: participants; Type: TABLE; Schema: public; Owner: Julien
 --
 
 CREATE TABLE public.participants (
-    id uuid NOT NULL,
+    id uuid DEFAULT public.uuid_generate_v4() NOT NULL,
     nickname character varying,
     user_id uuid
 );
 
 
-ALTER TABLE public.participants OWNER TO xxkbhzggxxcxbm;
+ALTER TABLE public.participants OWNER TO "Julien";
 
 --
--- Name: userlogin; Type: TABLE; Schema: public; Owner: xxkbhzggxxcxbm
+-- Name: userlogin; Type: TABLE; Schema: public; Owner: Julien
 --
 
 CREATE TABLE public.userlogin (
-    id uuid NOT NULL,
+    id uuid DEFAULT public.uuid_generate_v4() NOT NULL,
     last_name character varying,
     first_name character varying,
     email character varying,
@@ -102,10 +116,10 @@ CREATE TABLE public.userlogin (
 );
 
 
-ALTER TABLE public.userlogin OWNER TO xxkbhzggxxcxbm;
+ALTER TABLE public.userlogin OWNER TO "Julien";
 
 --
--- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: xxkbhzggxxcxbm
+-- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: Julien
 --
 
 COPY public.events (id, name, status, owner_id) FROM stdin;
@@ -113,7 +127,7 @@ COPY public.events (id, name, status, owner_id) FROM stdin;
 
 
 --
--- Data for Name: expense_participants; Type: TABLE DATA; Schema: public; Owner: xxkbhzggxxcxbm
+-- Data for Name: expense_participants; Type: TABLE DATA; Schema: public; Owner: Julien
 --
 
 COPY public.expense_participants (id, expense_id, participant_id) FROM stdin;
@@ -121,7 +135,7 @@ COPY public.expense_participants (id, expense_id, participant_id) FROM stdin;
 
 
 --
--- Data for Name: expenses; Type: TABLE DATA; Schema: public; Owner: xxkbhzggxxcxbm
+-- Data for Name: expenses; Type: TABLE DATA; Schema: public; Owner: Julien
 --
 
 COPY public.expenses (id, date, amount, description, paid_by, event_id) FROM stdin;
@@ -129,7 +143,7 @@ COPY public.expenses (id, date, amount, description, paid_by, event_id) FROM std
 
 
 --
--- Data for Name: participants; Type: TABLE DATA; Schema: public; Owner: xxkbhzggxxcxbm
+-- Data for Name: participants; Type: TABLE DATA; Schema: public; Owner: Julien
 --
 
 COPY public.participants (id, nickname, user_id) FROM stdin;
@@ -137,7 +151,7 @@ COPY public.participants (id, nickname, user_id) FROM stdin;
 
 
 --
--- Data for Name: userlogin; Type: TABLE DATA; Schema: public; Owner: xxkbhzggxxcxbm
+-- Data for Name: userlogin; Type: TABLE DATA; Schema: public; Owner: Julien
 --
 
 COPY public.userlogin (id, last_name, first_name, email, password) FROM stdin;
@@ -145,7 +159,7 @@ COPY public.userlogin (id, last_name, first_name, email, password) FROM stdin;
 
 
 --
--- Name: events events_pkey; Type: CONSTRAINT; Schema: public; Owner: xxkbhzggxxcxbm
+-- Name: events events_pkey; Type: CONSTRAINT; Schema: public; Owner: Julien
 --
 
 ALTER TABLE ONLY public.events
@@ -153,7 +167,7 @@ ALTER TABLE ONLY public.events
 
 
 --
--- Name: expense_participants expense_participants_pkey; Type: CONSTRAINT; Schema: public; Owner: xxkbhzggxxcxbm
+-- Name: expense_participants expense_participants_pkey; Type: CONSTRAINT; Schema: public; Owner: Julien
 --
 
 ALTER TABLE ONLY public.expense_participants
@@ -161,7 +175,7 @@ ALTER TABLE ONLY public.expense_participants
 
 
 --
--- Name: expenses expenses_pkey; Type: CONSTRAINT; Schema: public; Owner: xxkbhzggxxcxbm
+-- Name: expenses expenses_pkey; Type: CONSTRAINT; Schema: public; Owner: Julien
 --
 
 ALTER TABLE ONLY public.expenses
@@ -169,7 +183,7 @@ ALTER TABLE ONLY public.expenses
 
 
 --
--- Name: participants participants_pkey; Type: CONSTRAINT; Schema: public; Owner: xxkbhzggxxcxbm
+-- Name: participants participants_pkey; Type: CONSTRAINT; Schema: public; Owner: Julien
 --
 
 ALTER TABLE ONLY public.participants
@@ -177,7 +191,7 @@ ALTER TABLE ONLY public.participants
 
 
 --
--- Name: userlogin userlogin_pkey; Type: CONSTRAINT; Schema: public; Owner: xxkbhzggxxcxbm
+-- Name: userlogin userlogin_pkey; Type: CONSTRAINT; Schema: public; Owner: Julien
 --
 
 ALTER TABLE ONLY public.userlogin
@@ -185,31 +199,31 @@ ALTER TABLE ONLY public.userlogin
 
 
 --
--- Name: events events_owner_fkey; Type: FK CONSTRAINT; Schema: public; Owner: xxkbhzggxxcxbm
+-- Name: events events_owner_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Julien
 --
 
 ALTER TABLE ONLY public.events
-    ADD CONSTRAINT events_owner_fkey FOREIGN KEY (owner_id) REFERENCES public.userlogin(id);
+    ADD CONSTRAINT events_owner_id_fkey FOREIGN KEY (owner_id) REFERENCES public.userlogin(id);
 
 
 --
--- Name: expense_participants expense_participants_expenseid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: xxkbhzggxxcxbm
---
-
-ALTER TABLE ONLY public.expense_participants
-    ADD CONSTRAINT expense_participants_expenseid_fkey FOREIGN KEY (expense_id) REFERENCES public.expenses(id);
-
-
---
--- Name: expense_participants expense_participants_participantid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: xxkbhzggxxcxbm
+-- Name: expense_participants expense_participants_expense_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Julien
 --
 
 ALTER TABLE ONLY public.expense_participants
-    ADD CONSTRAINT expense_participants_participantid_fkey FOREIGN KEY (participant_id) REFERENCES public.participants(id);
+    ADD CONSTRAINT expense_participants_expense_id_fkey FOREIGN KEY (expense_id) REFERENCES public.expenses(id);
 
 
 --
--- Name: expenses expenses_event_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: xxkbhzggxxcxbm
+-- Name: expense_participants expense_participants_participant_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Julien
+--
+
+ALTER TABLE ONLY public.expense_participants
+    ADD CONSTRAINT expense_participants_participant_id_fkey FOREIGN KEY (participant_id) REFERENCES public.participants(id);
+
+
+--
+-- Name: expenses expenses_event_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Julien
 --
 
 ALTER TABLE ONLY public.expenses
@@ -217,7 +231,7 @@ ALTER TABLE ONLY public.expenses
 
 
 --
--- Name: expenses expenses_paid_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: xxkbhzggxxcxbm
+-- Name: expenses expenses_paid_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Julien
 --
 
 ALTER TABLE ONLY public.expenses
@@ -225,28 +239,11 @@ ALTER TABLE ONLY public.expenses
 
 
 --
--- Name: participants participants_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: xxkbhzggxxcxbm
+-- Name: participants participants_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Julien
 --
 
 ALTER TABLE ONLY public.participants
     ADD CONSTRAINT participants_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.userlogin(id);
-
-
---
--- Name: SCHEMA public; Type: ACL; Schema: -; Owner: xxkbhzggxxcxbm
---
-
-REVOKE ALL ON SCHEMA public FROM postgres;
-REVOKE ALL ON SCHEMA public FROM PUBLIC;
-GRANT ALL ON SCHEMA public TO xxkbhzggxxcxbm;
-GRANT ALL ON SCHEMA public TO PUBLIC;
-
-
---
--- Name: LANGUAGE plpgsql; Type: ACL; Schema: -; Owner: postgres
---
-
-GRANT ALL ON LANGUAGE plpgsql TO xxkbhzggxxcxbm;
 
 
 --
