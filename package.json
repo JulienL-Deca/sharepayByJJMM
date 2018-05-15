@@ -2,21 +2,11 @@
   "name": "sharepaybyjjmm",
   "version": "1.0.0",
   "description": "Starting date 14th of May Theoric Ending date 18th of May",
-<<<<<<< HEAD
-  "main": "index.js",
-  "dependencies": {
-    "express": "^4.16.3",
-    "nunjucks": "^3.1.2"
-  },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-=======
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
->>>>>>> server.js file
   },
   "repository": {
     "type": "git",
@@ -27,13 +17,9 @@
   "bugs": {
     "url": "https://github.com/Martin3418/sharepayByJJMM/issues"
   },
-<<<<<<< HEAD
-  "homepage": "https://github.com/Martin3418/sharepayByJJMM#readme"
-=======
   "homepage": "https://github.com/Martin3418/sharepayByJJMM#readme",
   "dependencies": {
     "express": "^4.16.3",
     "nunjucks": "^3.1.2"
   }
->>>>>>> server.js file
 }
