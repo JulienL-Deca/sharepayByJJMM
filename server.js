@@ -27,7 +27,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.serializeUser(function(user, callback) {
-  console.log(` >serializeUser: ${user.id} ${user.email}`);
   return callback(null, user.email);
 });
 passport.deserializeUser(function(email, callback) {
@@ -41,15 +40,13 @@ passport.deserializeUser(function(email, callback) {
 });
 passport.use(
   new LocalStrategy(function(email, password, callback) {
-    if (email === "julien.littler@decathlon.com" && password === "1234") {
-      callback(null, {
-        id: "00f41ad3-1f65-4650-b122-b3c0b272632d",
-        email: email
+    usersFromDB.validateUser(email, password)
+      .then(user => {
+        callback(null, user);
+      })
+      .catch(error => {
+        callback(error);
       });
-    } else {
-      console.log(" >LocalStrategy: user not found");
-      callback("User not found (LocalStrategy)");
-    }
   })
 );
 
