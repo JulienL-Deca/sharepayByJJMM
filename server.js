@@ -80,6 +80,9 @@ app.get(
   //require("connect-ensure-login").ensureLoggedIn("/home"),
   getEvents
 );
+app.get("/expenses", function (request, result) {
+  result.render("expenses");
+});
 
 app.get(
   "/event/:id",

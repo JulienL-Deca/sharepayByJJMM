@@ -7,43 +7,144 @@
 
 
 
+
+
+</br>
+
+
 <div class="container">
-  <h1>EVENT NAME</h1>
-  <h3>Here is the list of expenses related to this </h3>
-
   <div class="row">
-    <div class="col-3">
-    <p><b>Description</b></p>
-    </div>
-
-    <div class="col-3">
-      {{oneExpense.amount/100}}
-    </div>
-
-    <div class="col-3">
-{{oneExpense.nickname}}
-    </div>
-    <div class="col-3">
-{{oneExpense.date}}
-    </div>
-    {% for oneExpense in expenses %}
-    <div class="col-3">
-      {{oneExpense.description}}
-    </div>
+    <div class="col">
 
 
-    <div class="col-3">
-      {{oneExpense.amount/100}}
-    </div>
+      <!-- Trigger the modal with a button -->
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
-    <div class="col-3">
-{{oneExpense.nickname}}
+      <!-- Modal -->
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+              <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+      {# <button type="button" class="btn btn-primary float-center">New Event</button> #}
     </div>
-    <div class="col-3">
-{{oneExpense.date}}
+    <div class="col-6">
+
+      <div class="container">
+  <div class="row">
+    <div class="col-12 d-flex">
+      <div class="col p-0 card card-horizontal text-white">
+        <img class="card-img-top card-img-horizontal" src="https://www.scienceabc.com/wp-content/uploads/2017/02/Thailand-beach-sand.jpg" height="150" width="150" alt="">
+        <a class="card-link" href="#"></a>
+        <div class="card-img-overlay d-flex flex-column justify-content-between">
+          <p class="card-text text-uppercase text-shadow">
+            <h3>Your event name</h3>
+          </p>
+          <p class="card-text text-white text-shadow align-bottom">
+            Pay Equal, Share More!
+          </p>
+        </div>
+      </div>
     </div>
-        {% endfor %}
   </div>
+</div>
+
+</br>
+
+
+
+
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-success float-center">New expense</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-primary float-center">Share</button>
+    </div>
+    <div class="col-5">
+
+      <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
+      <th scope="col">Paid by</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for oneExpense in expenses %}
+    <tr>
+      <th scope="row">{{oneExpense.description}}</th>
+      <td>{{oneExpense.amount/100}}€</td>
+      <td>{{oneExpense.nickname}}</td>
+      <td>{{oneExpense.date}}</td>
+    </tr>
+      {% endfor %}
+    <tr>
+      <th scope="row">2</th>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2"></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-warning float-center">Close event</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
 
 
 
