@@ -74,16 +74,13 @@ app.post("/",
 
 app.get(
   "/userevents",
-  //require("connect-ensure-login").ensureLoggedIn("/home"),
+  require("connect-ensure-login").ensureLoggedIn("/"),
   getEvents
 );
-app.get("/expenses", function (request, result) {
-  result.render("expenses");
-});
 
 app.get(
   "/event/:id",
-  //require("connect-ensure-login").ensureLoggedIn("/home"),
+  require("connect-ensure-login").ensureLoggedIn("/"),
   getExpenses
 );
 

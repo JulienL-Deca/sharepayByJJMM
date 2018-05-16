@@ -1,16 +1,8 @@
 {% extends "layout.njk" %}
 
-
-
 {% block content %}
 
-
-
-
-
-
 </br>
-
 
 <div class="container">
   <div class="row">
@@ -28,7 +20,9 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
+
               <h4 class="modal-title">Modal Header</h4>
+
             </div>
             <div class="modal-body">
               <p>Some text in the modal.</p>
@@ -61,7 +55,9 @@
         <a class="card-link" href="#"></a>
         <div class="card-img-overlay d-flex flex-column justify-content-between">
           <p class="card-text text-uppercase text-shadow">
-            <h3>Your event name</h3>
+
+            <h3>{{expenses[0].name}}</h3>
+            
           </p>
           <p class="card-text text-white text-shadow align-bottom">
             Pay Equal, Share More!
@@ -106,17 +102,6 @@
       <td>{{oneExpense.date}}</td>
     </tr>
       {% endfor %}
-    <tr>
-      <th scope="row">2</th>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2"></td>
-      <td></td>
-    </tr>
   </tbody>
 </table>
 

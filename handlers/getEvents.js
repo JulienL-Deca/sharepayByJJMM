@@ -16,7 +16,6 @@ function getEvents(request, result) {
     .then((rawsOnly) => rawsOnly.rows)
     .then((response) => {
       result.render("events", {events: response})
-      console.log(JSON.stringify(response[0]));
       client.end();
     })
   }

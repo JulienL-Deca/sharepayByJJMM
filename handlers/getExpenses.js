@@ -2,11 +2,12 @@ const PG = require("pg");
 
 function getExpenses(request, result) {
   const client = new PG.Client(process.env.DATABASE_URL);
+  console.log(request);
   client.connect();
 
   client.query(
-    "SELECT description, amount, participants.nickname, date FROM expenses INNER JOIN participants ON (participants.id = expenses.paid_by) WHERE expenses.event_id=$1::uuid",
-    ['354e3ffb-da5b-41e8-a1cc-5d14ab91c4fd'])
+    "SELECT description, amount, participants.nickname, date, events.name FROM expenses INNER JOIN participants ON (participants.id = expenses.paid_by) LEFT OUTER JOIN events ON (expenses.event_id = events.id) WHERE expenses.event_id=$1::uuid",
+    [request.params.id])
     .catch((error) => {
       console.warn(error)
       client.end();
