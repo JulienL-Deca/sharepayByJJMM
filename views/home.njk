@@ -1,10 +1,18 @@
 {% extends "layoutHomepage.njk" %}
 
-
-
 {% block content %}
 
-
-<h1>THIS IS OUR FIRST PAGE</h1>
+<form action="/" method="post">
+  <div class="center">
+    <p>{{errorMessage}}</p>
+    <label>Email:</label>
+    <input type="text" name="username"/><br/>
+    <label>Password:</label>
+    <input type="password" name="password"/>
+    <button type="submit">
+      Submit
+    </button>
+  </div>
+</form>
 
 {% endblock content %}
