@@ -1,7 +1,9 @@
-const express = require('express');
+const express = require("express");
 const nunjucks = require("nunjucks");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const getEvents = require("./handlers/getEvents");
+const getExpenses = require("./handlers/getExpenses");
 
 const usersFromDB = require("./handlers/getUsersFromDB");
 
@@ -73,6 +75,17 @@ app.post("/",
   }
 );
 
+app.get(
+  "/userevents",
+  //require("connect-ensure-login").ensureLoggedIn("/home"),
+  getEvents
+);
+
+app.get(
+  "/event/:id",
+  //require("connect-ensure-login").ensureLoggedIn("/home"),
+  getExpenses
+);
 
 //public ressource
 app.use(express.static("public"));
@@ -88,7 +101,6 @@ app.use(function (err, req, res, next) {
 });
 
 //server test
-
 app.listen(port, function () {
   console.log("Server listening on port:" + port);
 });

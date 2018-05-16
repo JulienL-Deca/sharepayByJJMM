@@ -1,0 +1,33 @@
+{% extends "layout.njk" %}
+
+
+
+{% block content %}
+
+
+  <div class="container">
+    <h1>WELCOME! Here is the list of the events you created...</h1>
+    <div class="row">
+      <div class="col-4">
+
+      </div>
+
+      <div class="col-4">
+
+      </div>
+
+      <div class="col-4">
+
+      </div>
+    </div>
+
+    {% for oneEvent in events %}
+        <div class="card col-4">
+          <div class="card-body">
+            <p class="card-text"><a href="/event/{{oneEvent.id}}">{{oneEvent.name}}</a></p>
+            <p class="card-text">{{oneEvent.status}}</p>
+          </div>
+        </div>
+        {% endfor %}
+
+{% endblock content %}
