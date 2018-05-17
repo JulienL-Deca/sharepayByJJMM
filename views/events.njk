@@ -4,15 +4,15 @@
 
 {% block content %}
 
-
-<div class="container">
+<BR>
+<div class="container" id="page_expense">
   <h1>Welcome {{user}}! Here is the list of the events you created...</h1>
-  <div class="row">
-    <div class="col-6">
-      <buttontype="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalNewEvent">create a new event</button>
+  <div class="row text-center">
+    <div class="col-4">
+      <buttontype="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalNewEvent" data-keyboard="true">Create a new event</button>
     </div>
 <!-- Modal to add a new event -->
-<div id="myModalNewEvent" class="modal fade" role="dialog" aria-hidden="true" style="display: none;">
+<div id="myModalNewEvent" class="modal fade" role="dialog" aria-hidden="true" style="display: none;" >
       <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -24,17 +24,17 @@
           </div>
           <div class="modal-body">
 
-            <form action="/userevents/userId" method="post" id="expense">
+            <form action="/userevents/newEvent" method="post" id="event">
               <div class="form-group">
                 <label for="description">New event's name</label>
-                <input type="text" class="form-control" name="description" placeholder="Description">
+                <input type="text" class="form-control" name="description" placeholder="Event's name">
               </div>
             <input type="hidden" name="user_id" value="{{userId}}">
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" form="expense">Add this new event</button>
+            <button type="submit" class="btn btn-primary" form="event">Add this new event</button>
           </div>
         </div>
         <!-- end of Modal content -->
@@ -43,28 +43,79 @@
 <!-- END Modal to add a new event -->
 <!-- ---------------------------- -->
 <!-- ---------------------------- -->
+<div class="col-4">
+  <buttontype="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalListParticipant" data-keyboard="true">List all my participants</button>
+</div>
+<!-- Modal to list all participants from a member -->
+<div id="myModalListParticipant" class="modal fade" role="dialog" aria-hidden="true" style="display: none;" >
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">List all participants</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
-    <div class="col-6">
-      <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModalShowParticipants">Show participant(s) / Add participant(s)</button>
+      </div>
     </div>
+    <!-- end of Modal content -->
+  </div>
+</div>
+<!-- END Modal to list all participants from a member -->
+<!-- ---------------------------- -->
+<!-- ---------------------------- -->
+    <div class="col-4">
+      <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModalShowParticipants" data-keyboard="true">Add participant(s)</button>
+    </div>
+<!-- Modal to add a new participant for a member -->
+    <div id="myModalShowParticipants" class="modal fade" role="dialog" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add a new participant</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
 
+                <form action="/userevents/newParticipant" method="post" id="participant">
+                  <div class="form-group">
+                    <label for="description">New participant</label>
+                    <input type="text" class="form-control" name="nickname" placeholder="Nickname ...">
+                  </div>
+                <input type="hidden" name="user_id" value="{{userId}}">
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" form="participant">Add this new participant</button>
+              </div>
+            </div>
+            <!-- end of Modal content -->
+          </div>
+        </div>
+    <!-- END Modal to add a new participant for a member -->
+    <!-- ---------------------------- -->
+    <!-- ---------------------------- -->
   </div>
   <br>
   <div class="row">
     {% for oneEvent in events %}
     {% if oneEvent.status === true %}
     <div class="event-active card col-3 m-1 bg-info">
-      <div class="card-body">
-        <p class="card-text"><a href="/event/{{oneEvent.id}}">{{oneEvent.name}} <i class="fas fa-search"></i></a></p>
-      </div>
-    </div>
     {% else %}
     <div class="event-finished card col-3 m-1 bg-secondary">
+    {% endif %}
       <div class="card-body">
         <p class="card-text"><a href="/event/{{oneEvent.id}}">{{oneEvent.name}} <i class="fas fa-chart-bar"></i></a></p>
       </div>
     </div>
-    {% endif %}
     {% endfor %}
   </div>
+  <BR>
   {% endblock content %}

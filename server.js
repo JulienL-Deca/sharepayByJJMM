@@ -8,6 +8,7 @@ const getSignup = require("./handlers/getSignup");
 const postExpense = require("./handlers/postExpense");
 const usersFromDB = require("./handlers/getUsersFromDB");
 const postEvent = require("./handlers/postEvent");
+const postParticpant = require("./handlers/postParticipant");
 
 const app = express()
 
@@ -105,9 +106,14 @@ app.get(
   getEvents
 );
 app.post(
-  "/userevents/:id",
+  "/userevents/newExpenses",
   require("connect-ensure-login").ensureLoggedIn("/"),
   postEvent
+);
+app.post(
+  "/userevents/newParticipant",
+  require("connect-ensure-login").ensureLoggedIn("/"),
+  postParticpant
 );
 
 app.get(
