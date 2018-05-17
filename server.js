@@ -73,14 +73,7 @@ app.get("/signup", function (request, result) {
   result.render("signup");
 });
 
-<<<<<<< HEAD
 app.post("/signupUser", getSignup.signup);
-=======
-// app.post("/",
-//   passport.authenticate("local", {
-//   }
-// );
->>>>>>> new layout and modif expense
 
 // home page where you will login
 app.get(
