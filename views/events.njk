@@ -8,26 +8,58 @@
 <div class="container">
   <h1>Welcome {{user}}! Here is the list of the events you created...</h1>
   <div class="row">
-    <div class="col-4">
-      <p>create a new event</p>
+    <div class="col-6">
+      <buttontype="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalNewEvent">create a new event</button>
     </div>
-    <div class="col-4">
+<!-- Modal to add a new event -->
+<div id="myModalNewEvent" class="modal fade" role="dialog" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add a new event</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <form action="/userevents/userId" method="post" id="expense">
+              <div class="form-group">
+                <label for="description">New event's name</label>
+                <input type="text" class="form-control" name="description" placeholder="Description">
+              </div>
+            <input type="hidden" name="user_id" value="{{userId}}">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" form="expense">Add this new event</button>
+          </div>
+        </div>
+        <!-- end of Modal content -->
+      </div>
     </div>
-    <div class="col-4">
-      <p>Show participant(s) / Add participant(s)</p>
+<!-- END Modal to add a new event -->
+<!-- ---------------------------- -->
+<!-- ---------------------------- -->
+
+    <div class="col-6">
+      <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModalShowParticipants">Show participant(s) / Add participant(s)</button>
     </div>
 
   </div>
+  <br>
   <div class="row">
     {% for oneEvent in events %}
     {% if oneEvent.status === true %}
-    <div class="event-active card col-4 bg-info">
+    <div class="event-active card col-3 m-1 bg-info">
       <div class="card-body">
         <p class="card-text"><a href="/event/{{oneEvent.id}}">{{oneEvent.name}} <i class="fas fa-search"></i></a></p>
       </div>
     </div>
     {% else %}
-    <div class="event-finished card col-4 bg-secondary">
+    <div class="event-finished card col-3 m-1 bg-secondary">
       <div class="card-body">
         <p class="card-text"><a href="/event/{{oneEvent.id}}">{{oneEvent.name}} <i class="fas fa-chart-bar"></i></a></p>
       </div>

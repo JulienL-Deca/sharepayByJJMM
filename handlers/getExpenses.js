@@ -30,8 +30,7 @@ const client = new PG.Client(process.env.DATABASE_URL);
   .then((response) => {
     client.end();
     // console.log(response);
-    result.render("expenses", {expenses: response[0], participants: response[1]})
-
+    result.render("expenses", {expenses: response[0], participants: response[1], user: request.user.first_name})
   })
 }
 

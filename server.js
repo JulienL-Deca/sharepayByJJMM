@@ -5,9 +5,9 @@ const LocalStrategy = require("passport-local").Strategy;
 const getEvents = require("./handlers/getEvents");
 const getExpenses = require("./handlers/getExpenses");
 const getSignup = require("./handlers/getSignup");
-
 const postExpense = require("./handlers/postExpense");
 const usersFromDB = require("./handlers/getUsersFromDB");
+const postEvent = require("./handlers/postEvent");
 
 const app = express()
 
@@ -103,6 +103,11 @@ app.get(
   "/userevents",
   require("connect-ensure-login").ensureLoggedIn("/"),
   getEvents
+);
+app.post(
+  "/userevents/:id",
+  require("connect-ensure-login").ensureLoggedIn("/"),
+  postEvent
 );
 
 app.get(
