@@ -60,7 +60,8 @@ passport.use(
 //nunjucks config
 nunjucks.configure("views", {
   autoescape: true,
-  express: app
+  express: app,
+  watch: true
 });
 app.set("views", __dirname + "/views");
 app.set("view engine", "njk");
