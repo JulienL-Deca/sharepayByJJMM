@@ -72,48 +72,38 @@
 
 
 
-              <form method="POST" action="/treatForm">
-                <ul>
-                <li><input type="text" name="expense" placeholder="expense" /></li>
-                <li><input type="text" name="price" placeholder="price"></li>
+<form>
+  <div class="form-group">
+    <label for="description">New expense's name</label>
+    <input type="text" class="form-control" id="description" placeholder="Description">
+  </div>
+
+  <div class="form-group">
+    <label for="description">How much ?</label>
+    <input type="text" class="form-control" id="description" placeholder="price in €">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Paid by</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
 
 
-                <li><select name="Paid by"></li>
-                  <option value="volvo">name1</option>
-                  <option value="saab">name2</option>
-                  <option value="fiat">name3</option>
-                  <option value="audi">name4</option>
-                </select>
+  <div class="form-group">
+    <label for="description">Date</label>
+    <input type="date" class="form-control" id="description" placeholder="select your date">
+  </div>
+
+  <button type="submit">Save changes</button>
 
 
-
-                <li><input type="text" name="date" placeholder="date" /></li>
-</ul>
-
-                {# <form action="/action_page.php">
-        <select name="cars">
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="fiat">Fiat</option>
-          <option value="audi">Audi</option>
-        </select>
-        <br><br>
-        <input type="submit"> #}
-
-
-
-
-
-
-
-
-
-
-                <input type="hidden" name="hidden_value" value="i-4m-1nvi5ibl3" />
-                <button type="submit">
-                  Apply changes
-                </button>
-              </form>
+</form>
 
 
 
