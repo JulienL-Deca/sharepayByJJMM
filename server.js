@@ -60,6 +60,11 @@ app.set("view engine", "njk");
 
 //rooting
 
+//signup
+app.get("/signup", function (request, result) {
+  result.render("signup");
+});
+
 // home page where you will login
 app.get("/", function (request, result) {
   result.render("home", {errorMesage: request.query.errormessage});
