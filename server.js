@@ -6,6 +6,7 @@ const getEvents = require("./handlers/getEvents");
 const getExpenses = require("./handlers/getExpenses");
 const getSignup = require("./handlers/getSignup");
 
+const postExpense = require("./handlers/postExpense");
 const usersFromDB = require("./handlers/getUsersFromDB");
 
 const app = express()
@@ -31,7 +32,7 @@ passport.serializeUser(function(user, callback) {
   return callback(null, user.email);
 });
 passport.deserializeUser(function(email, callback) {
-  console.log(` >deserializeUser: ${email}`)
+  //console.log(` >deserializeUser: ${email}`)
   if (email) {
     usersFromDB.findUserByEmail(email)
     .then(user => {
@@ -108,6 +109,14 @@ app.get(
   require("connect-ensure-login").ensureLoggedIn("/"),
   getExpenses
 );
+
+app.post(
+  "/event/:id/submitexpense",
+  require("connect-ensure-login").ensureLoggedIn("/"),
+  postExpense
+);
+
+
 
 //public ressource
 app.use(express.static("public"));
