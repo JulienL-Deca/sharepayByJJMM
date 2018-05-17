@@ -62,11 +62,11 @@ app.set("view engine", "njk");
 
 // home page where you will login
 app.get("/", function (request, result) {
-  result.render("home");
+  result.render("home", {errorMesage: request.query.errormessage});
 });
 
 app.post("/",
-  passport.authenticate("local", { failureRedirect: '/' }),
+  passport.authenticate("local", { failureRedirect: '/?errormessage="wrong login or password"' }),
   function(request, result) {
     result.redirect("/userevents");
   }
