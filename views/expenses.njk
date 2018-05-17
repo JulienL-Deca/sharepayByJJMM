@@ -2,12 +2,27 @@
 
 {% block content %}
 
+<body background="/images/NY3.jpg">
+
+
+  <style media="screen">
+
+  .col{
+    text-align: center;
+    background-color:
+  }
+
+
+  </style>
+
+
+
 </br>
 
-<div class="container" id="page_expense">
-  <div class="row text-center justify-content-center align-items-center">
-    <div class="col-">
-        <a href="/userevents" class="btn btn-secondary btn-lg mr-auto" role="button" aria-disabled="true">Back to event</a>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-info btn-lg mr-auto" onclick="window.location.href='../userevents'">Back to Event</button>
     </div>
     <div class="col-6">
       <div class="container">
@@ -28,51 +43,9 @@
           </div>
         </div>
       </div>
-</br>
-
-    </div>
-    <div class="col">
-      <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">&nbsp;&nbsp;New Expense&nbsp;</button>
-
-      <!-- Modal -->
-      <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Add a new expense</h4>
-            </div>
-            <div class="modal-body">
+    </br>
 
 
-
-<form>
-  <div class="form-group">
-    <label for="description">New expense's name</label>
-    <input type="text" class="form-control" id="description" placeholder="Description">
-  </div>
-
-  <div class="form-group">
-    <label for="description">How much ?</label>
-    <input type="text" class="form-control" id="description" placeholder="price in €">
-  </div>
-
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Paid by</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label for="description">Date</label>
-    <input type="date" class="form-control" id="description" placeholder="select your date">
   </div>
   <div class="col">
 
