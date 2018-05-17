@@ -35,6 +35,10 @@ passport.deserializeUser(function(email, callback) {
     usersFromDB.findUserByEmail(email)
     .then(user => {
     callback(null, user);
+    })
+    .catch(function(error) {
+      console.warn(` >deserializeUser: ${error}`);
+      callback(error);
     });
   }
 });
@@ -45,6 +49,7 @@ passport.use(
         callback(null, user);
       })
       .catch(error => {
+        console.warn(` >LocalStrategy: ${error}`);
         callback(error);
       });
   })
@@ -71,16 +76,28 @@ app.post("/",
 );
 
 // home page where you will login
-app.get("/", function (request, result) {
-  result.render("home", {errorMesage: request.query.errormessage});
-});
-
+app.get(
+  "/",
+    require("connect-ensure-login").ensureLoggedIn("/login"),
+    function(request, result) {
+      result.redirect("/userevents");
+    }
+);
+app.get(
+  "/login",
+  function (request, result) {
+  result.render("home", {errorMesage: request.query.errormessage});}
+);
 app.post("/",
-  passport.authenticate("local", { failureRedirect: '/?errormessage="wrong login or password"' }),
+  passport.authenticate("local", { failureRedirect: "/login?errormessage=wrong login or password"}),
   function(request, result) {
     result.redirect("/userevents");
   }
 );
+app.get("/logout", function(request, result) {
+  request.logout();
+  result.redirect("/login");
+});
 
 app.get(
   "/userevents",
@@ -98,13 +115,20 @@ app.get(
 app.use(express.static("public"));
 
 //errors management
-app.use(function (req, res, next) {
-  res.status(404).render("template_error");
+app.use(function (request, result, next) {
+  result.status(404).render("template_error");
 });
 
-app.use(function (err, req, res, next) {
-  console.error(err.stack);
-  res.status(500).send('ERROR 500 : Something broken!')
+app.use(function (error, request, result, next) {
+  console.warn(` >handle ERROR 500: ${error}`);
+  switch (error) {
+    case "wrong login or password":
+        result.status(500).redirect("/login?errormessage=wrong login or password");
+      break;
+    default:
+    result.send(error);
+  }
+  //res.status(500).redirect("/login")
 });
 
 //server test

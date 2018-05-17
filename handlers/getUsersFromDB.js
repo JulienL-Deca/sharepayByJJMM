@@ -8,7 +8,11 @@ function findUserByEmail(emailToSelect){
     "SELECT id, first_name, last_name, email FROM userlogin WHERE email = $1::varchar;", [emailToSelect])
     .then(function(resultDB){
       client.end();
-      return resultDB.rows[0];
+      if (resultDB === undefined) {
+        throw "no result from DB"
+      } else {
+        return resultDB.rows[0];
+      }
     });
 }
 
@@ -17,13 +21,18 @@ function validateUser(emailToSelect, givenPassword){
   client.connect();
   return client.query("SELECT password FROM userlogin WHERE email = $1::varchar",[emailToSelect])
   .then(function(resultPassword){
-    if (resultPassword.rows[0].password === givenPassword) {
-      return client.query(
-        "SELECT id, CONCAT(first_name,' ', last_name) AS full_name, email FROM userlogin WHERE email = $1::varchar;", [emailToSelect])
-        .then(function(resultDB){
-          client.end();
-          return resultDB.rows[0];
-        });
+    if (resultPassword.rowCount === 0) {
+      client.end();
+      throw "wrong login or password"
+    } else {
+      if (resultPassword.rows[0].password === givenPassword) {
+        return client.query(
+          "SELECT id, CONCAT(first_name,' ', last_name) AS full_name, email FROM userlogin WHERE email = $1::varchar;", [emailToSelect])
+          .then(function(resultDB){
+            client.end();
+            return resultDB.rows[0];
+          });
+        }
     }
   });
 }
