@@ -2,61 +2,40 @@
 
 {% block content %}
 
-<body background="/images/NY3.jpg">
-
-
-  <style media="screen">
-
-    .col{
-    text-align: center;
-    background-color:
-    }
-
-
-  </style>
-
-
-
 </br>
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <button type="button" class="btn btn-info btn-lg mr-auto">Back to Event</button>
-
+<div class="container" id="page_expense">
+  <div class="row text-center justify-content-center align-items-center">
+    <div class="col-">
+        <a href="/userevents" class="btn btn-secondary btn-lg mr-auto" role="button" aria-disabled="true">Back to event</a>
     </div>
     <div class="col-6">
 
       <div class="container">
-  <div class="row">
-    <div class="col-12 d-flex">
-      <div class="col p-0 card card-horizontal text-white">
-        <img class="card-img-top card-img-horizontal" src="https://www.scienceabc.com/wp-content/uploads/2017/02/Thailand-beach-sand.jpg" height="150" width="150" alt="">
-        <a class="card-link" href="#"></a>
-        <div class="card-img-overlay d-flex flex-column justify-content-between">
-          <p class="card-text text-uppercase text-shadow">
+        <div class="row">
+          <div class="col-12 d-flex">
+            <div class="col p-0 card card-horizontal text-white">
+              <img class="card-img-top card-img-horizontal" src="https://www.scienceabc.com/wp-content/uploads/2017/02/Thailand-beach-sand.jpg" height="150" width="150" alt="">
+              <a class="card-link" href="#"></a>
+              <div class="card-img-overlay d-flex flex-column justify-content-between">
+                <p class="card-text text-uppercase text-shadow">
 
-            <h3>{{expenses[0].name}}</h3>
+                  <h3>{{expenses[0].name}}</h3>
 
-          </p>
-          <p class="card-text text-white text-shadow align-bottom">
-            Equal Pay, Share More!
-          </p>
+                </p>
+                <p class="card-text text-white text-shadow align-bottom">
+                  Equal Pay, Share More!
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-
 </br>
 
-
     </div>
-    <div class="col">
-
-
-      <!-- Trigger the modal with a button -->
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">&nbsp;&nbsp;New Expense&nbsp;</button>
+    <div class="col-">
+      <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">&nbsp;&nbsp;New Expense&nbsp;</button>
 
       <!-- Modal -->
       <div id="myModal" class="modal fade" role="dialog">
@@ -94,38 +73,27 @@
     </select>
   </div>
 
-
   <div class="form-group">
     <label for="description">Date</label>
     <input type="date" class="form-control" id="description" placeholder="select your date">
   </div>
 
   <button type="submit">Save changes</button>
-
-
 </form>
-
-
-
-
-
-
-            </div>
+      </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>
-
         </div>
       </div>
-
-
-
     </div>
   </div>
+
+
   <div class="row">
     <div class="col">
-      <button type="button" class="btn btn-info btn-lg mr-auto">&nbsp;Share&nbsp;</button>
+      <button type="button" class="btn btn-primary btn-lg mr-auto">&nbsp;Share&nbsp;</button>
     </div>
     <div class="col-9">
 
@@ -157,32 +125,12 @@
   </tbody>
 </table>
 
-
-
-
-
-
-
-
-
-
-
-
     </div>
     <div class="col">
-      <button type="button" class="btn btn-info btn-lg"> Sum Up </button>
+      <button type="button" class="btn btn-secondary btn-lg"> Sum Up </button>
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
 
 
 {% endblock content %}
