@@ -20,16 +20,24 @@
     SharePay
   </a> #}
 
+<div>
+      <a class="navbar-brand">Hello {{user}}!</a>
+    </br>
+      <a class="navbar-text" href="/logout"> <i class="fas fa-sign-out-alt"></i>Logout</a>
+</div>
+
       <div class="row mr-auto ml-auto">
         <div class="col-">
-          <img src="/images/beer.png" alt="" width="70" height="70">
+          <img src="/images/beer.png" alt="" width="75" height="75">
         </div>
         <div class="col-">
           <img src="/images/textelogo.png" alt="" width="350" height="75">
       </div>
-      <div class="col- align-self-center">
-        <a class="navbar-brand ml-auto" href="/logout"> <i class="fas fa-sign-out-alt"></i>Logout</a>
+
+      <div>
+            <a class="navbar-brand" href="#">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a>
       </div>
+
     </nav>
     {% block content %}
     {% endblock content %}
