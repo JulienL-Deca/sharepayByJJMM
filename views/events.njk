@@ -58,7 +58,22 @@
         </button>
       </div>
       <div class="modal-body">
-
+        <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nickname</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for oneParticipant in participants %}
+    <tr>
+      <th scope="row">{{loop.index}}</th>
+      <td>{{oneParticipant.nickname}}</td>
+    </tr>
+        {% endfor %}
+  </tbody>
+</table>
       </div>
     </div>
     <!-- end of Modal content -->
