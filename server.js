@@ -65,6 +65,11 @@ app.get("/signup", function (request, result) {
   result.render("signup");
 });
 
+app.post("/",
+  passport.authenticate("local", {
+  }
+);
+
 // home page where you will login
 app.get("/", function (request, result) {
   result.render("home", {errorMesage: request.query.errormessage});

@@ -60,7 +60,7 @@ button:hover {
     padding: 8px;
     width: 70%;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 45px;
     border:1px solid #ccc;
     background-color:white;
 }
@@ -80,11 +80,17 @@ button:hover {
 }
 </style>
 <body>
-
+<form>
   <div class="container">
     <h2>Sign Up</h2>
     <p>Please fill in this form to create an account.</p>
     <hr>
+
+    <label for="first name"><b>First Name</b></label>
+    <input type="text" placeholder="First Name" name="first name" required>
+
+    <label for="last name"><b>Last Name</b></label>
+    <input type="text" placeholder="Last Name" name="last name" required>
 
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required>
