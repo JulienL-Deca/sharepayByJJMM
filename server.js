@@ -117,7 +117,9 @@ app.post(
   postExpense
 );
 
-
+app.get("/sumup", function (request, result) {
+  result.render("sumup");
+});
 
 //public ressource
 app.use(express.static("public"));
