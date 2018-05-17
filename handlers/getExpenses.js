@@ -13,7 +13,7 @@ const expenses = function(client, paramsId) {
 
 const participants = function(client, userId) {
     return client.query(
-      "SELECT participants.nickname, participants.id FROM participants INNER JOIN userlogin ON (userlogin.id = participants.user_id) WHERE userlogin.id=$1::uuid",
+      "SELECT participants.nickname, participants.id user FROM participants INNER JOIN userlogin ON (userlogin.id = participants.user_id) WHERE userlogin.id=$1::uuid",
       [userId])
       .catch((error) => {
         console.warn(error)
