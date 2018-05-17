@@ -1,13 +1,30 @@
 const PG = require("pg");
 
-function signup(emailToSelect){
-  const client = new PG.Client({connectionString: connectionString,});
+function signup(request, result){
+  const client = new PG.Client({connectionString: process.env.DATABASE_URL});
   client.connect();
-  return client.query(
-    "SELECT id, first_name, last_name, email FROM userlogin WHERE email = $1::varchar;", [emailToSelect])
+  return client.query("insert into userlogin (last_name, first_name, email, password) values ($1::varchar, $2::varchar, $3::varchar, $4::varchar) returning(email)",
+  [request.body.last_name, request.body.first_name, request.body.email, request.body.password])
+    .then(function(response){
+      return response.rows;
+    })
     .then(function(resultDB){
+      // client.end();
+      return resultDB[0];
+    })
+    .then(function(user){
+      request.logIn(user, function(error) {
+        if (error) {
+          console.log(error);
+          return result.redirect("/");
+        } else {
+          return result.redirect("/userevents");
+        }
+      })
+    })
+    .catch(error => {
       client.end();
-      return resultDB.rows[0];
+      console.log(error);
     });
 }
 

@@ -4,6 +4,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const getEvents = require("./handlers/getEvents");
 const getExpenses = require("./handlers/getExpenses");
+const getSignup = require("./handlers/getSignup");
 
 const usersFromDB = require("./handlers/getUsersFromDB");
 
@@ -70,10 +71,7 @@ app.get("/signup", function (request, result) {
   result.render("signup");
 });
 
-app.post("/",
-  passport.authenticate("local", {
-  }
-);
+app.post("/signupUser", getSignup.signup);
 
 // home page where you will login
 app.get(
