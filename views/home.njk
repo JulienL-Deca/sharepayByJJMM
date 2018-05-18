@@ -1,0 +1,11 @@
+{% extends "layoutHomepage.njk" %}
+
+{% block content %}
+  <input type="text" name="username" placeholder="Username" required>
+  <input type="password" name="password" placeholder="Password" required>
+  <input type="submit" value="Login">
+  {% if errorMesage %}
+      <div class="alert alert-danger" role="alert">{{errorMesage}}</div>
+  {% endif %}
+
+{% endblock content %}
