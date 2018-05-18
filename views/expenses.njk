@@ -29,7 +29,6 @@
         </div>
       </div>
     </div>
-  </div>
 
   <div class="col">
 
@@ -103,51 +102,6 @@
 
   </br>
 </br>
-
-<<<<<<< HEAD
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Description</th>
-      <th scope="col">Price</th>
-      <th scope="col">Paid by</th>
-      <th scope="col">Date</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for oneExpense in expenses %}
-    {% if oneExpense.description %}
-    <tr>
-      <td>{{oneExpense.description}}</td>
-      <td>{{oneExpense.amount/100}}€</td>
-      <td>{{oneExpense.nickname}}</td>
-      <td>{{oneExpense.date.toISOString().slice(0,10)}}</td>
-
-      <td>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#{{oneExpense.expensesid}}">
-          <i class="fas fa-edit"></i>
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="{{oneExpense.expensesid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit an expense</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-
-                <form action="/event/{{expenses[0].id}}/updateexpense" method="post" id="editExpense">
-                  <div class="form-group">
-                    <label for="description">Expense name</label>
-                    <input type="text" value="{{oneExpense.description}}" class="form-control" id="editDescription" name="description" placeholder="Description">
-=======
     <table class="table table-hover">
       <thead>
         <tr>
@@ -182,7 +136,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
->>>>>>> new html style
+
                   </div>
 
                   <div class="form-group">
@@ -242,20 +196,6 @@
                 </div>
               </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           </td>
 
     </tr>
