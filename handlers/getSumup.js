@@ -23,17 +23,17 @@ const participants = function(client, userId) {
     };
 
 
-function getExpenses(request, result) {
+function getSumup(request, result) {
 const client = new PG.Client(process.env.DATABASE_URL);
   client.connect();
   Promise.all([expenses(client, request.params.id), participants(client, request.user.id)])
   .then((response) => {
     client.end();
     // console.log(response);
-    result.render("expenses", {expenses: response[0], participants: response[1], user: request.user.first_name})
+    result.render("sumup", {expenses: response[0], participants: response[1], user: request.user.first_name})
   })
 }
 
 
 
-  module.exports = getExpenses;
+  module.exports = getSumup;

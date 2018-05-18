@@ -9,6 +9,7 @@ const postExpense = require("./handlers/postExpense");
 const usersFromDB = require("./handlers/getUsersFromDB");
 const postEvent = require("./handlers/postEvent");
 const postParticpant = require("./handlers/postParticipant");
+const getSumup = require("./handlers/getSumup");
 
 const app = express()
 
@@ -128,9 +129,11 @@ app.post(
   postExpense
 );
 
-app.get("/event/:id/sumup", function (request, result) {
-  result.render("sumup");
-});
+app.get(
+  "/event/:id/sumup",
+  // require("connect-ensure-login").ensureLoggedIn("/"),
+  getSumup
+);
 
 //public ressource
 app.use(express.static("public"));

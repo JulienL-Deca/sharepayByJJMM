@@ -1,10 +1,11 @@
 {% extends "layout.njk" %}
 
 {% block content %}
-<div class="container bg text-center mt-5" id="page_sumup">
-  <div class="row text-center justify-content-end align-items-center">
-    <div class="col text-center">
-      <button type="button" class="btn btn-secondary btn-lg mr-auto" onclick="window.location.href='../userevents'">Back to Event</button>
+<BR>
+<div class="container text-center" id="page_sumup">
+  <div class="row text-center justify-content-center align-items-center">
+    <div class="col-">
+      <button type="button" class="btn btn-secondary btn-lg mr-auto" onclick="window.location.href='../{{expenses[0].id}}'">Back to Event</button>
     </div>
   </div>
   <div class="row text-center justify-content-center align-items-center">
@@ -38,32 +39,35 @@
       </table>
     </div>
   </div>
-  <BR>
-    <div class="row text-center justify-content-center align-items-center">
-      <div class="col">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Description</th>
-              <th scope="col">Price</th>
-              <th scope="col">Paid by</th>
-              <th scope="col">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for oneExpense in expenses %}
-            {% if oneExpense.description %}
-            <tr>
-              <td>{{oneExpense.description}}</td>
-              <td>{{oneExpense.amount/100}}€</td>
-              <td>{{oneExpense.nickname}}</td>
-              <td>{{oneExpense.date}}</td>
-            </tr>
-            {% endif %}
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+<BR>
+  <div>
+    <h2>List of all expenses<h2>
+  </div>
+  <div class="row text-center justify-content-center align-items-center">
+    <div class="col-9">
+      <table class="table table-striped table-sm table-bordered">
+        <thead>
+          <tr >
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Paid by</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for oneExpense in expenses %}
+          {% if oneExpense.description %}
+          <tr>
+            <td>{{oneExpense.description}}</td>
+            <td>{{oneExpense.amount/100}}€</td>
+            <td>{{oneExpense.nickname}}</td>
+            <td>{{oneExpense.date}}</td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
+</div>
 {% endblock content %}
