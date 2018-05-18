@@ -6,10 +6,11 @@ const getEvents = require("./handlers/getEvents");
 const getExpenses = require("./handlers/getExpenses");
 const getSignup = require("./handlers/getSignup");
 const postExpense = require("./handlers/postExpense");
+const deleteExpense = require("./handlers/deleteExpense");
 const updateExpense = require("./handlers/updateExpense");
 const usersFromDB = require("./handlers/getUsersFromDB");
 const postEvent = require("./handlers/postEvent");
-const postParticpant = require("./handlers/postParticipant");
+const postParticipant = require("./handlers/postParticipant");
 const getSumup = require("./handlers/getSumup");
 
 const app = express()
@@ -119,7 +120,7 @@ app.post(
 app.post(
   "/userevents/newParticipant",
   require("connect-ensure-login").ensureLoggedIn("/"),
-  postParticpant
+  postParticipant
 );
 
 app.get(
@@ -138,6 +139,12 @@ app.post(
   "/event/:id/updateexpense",
   require("connect-ensure-login").ensureLoggedIn("/"),
   updateExpense
+);
+
+app.post(
+  "/event/:id/deleteexpense",
+  require("connect-ensure-login").ensureLoggedIn("/"),
+  deleteExpense
 );
 
 app.get(
