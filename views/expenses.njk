@@ -128,12 +128,12 @@
         <td>{{oneExpense.date.toISOString().slice(0,10)}}</td>
         <td>
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editModal">
+          <button type="button" class="btn btn-link" data-toggle="modal" data-target="#{{oneExpense.expensesid}}-edit">
             <i class="fas fa-edit"></i>
           </button>
 
           <!-- Modal -->
-          <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade sharepay-edit" id="{{oneExpense.expensesid}}-edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -190,7 +190,7 @@
                 </span></button>
 
                 <!-- Modal -->
-                <div class="modal fade" id="{{oneExpense.expensesid}}-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal fade sharepay-delete" id="{{oneExpense.expensesid}}-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                       <div class="modal-header">

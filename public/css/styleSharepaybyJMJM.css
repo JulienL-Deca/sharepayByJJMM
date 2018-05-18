@@ -31,13 +31,13 @@ color: rgba(0,0,0,1);
 
 }
 
-#editModal {
+.sharepay-edit {
 color: rgba(0,0,0,1);
 
 }
 
 
-#deleteModal {
+.sharepay-delete {
 color: rgba(0,0,0,1);
 
 }
