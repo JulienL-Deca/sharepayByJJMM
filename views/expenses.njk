@@ -5,30 +5,12 @@
 </br>
 <div class="container" id="page_expense">
 </br>
-<<<<<<< HEAD
-  <div class="row text-center justify-content-center align-items-center">
-    <div class="col">
-      <button type="button" class="btn btn-outline-light btn-lg mr-auto" onclick="window.location.href='../userevents'">Back to Event</button>
-    </div>
-    <div class="col-6">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 d-flex">
-            <div class="col p-0 card card-horizontal text-white">
-              <img class="card-img-top card-img-horizontal" src="https://www.scienceabc.com/wp-content/uploads/2017/02/Thailand-beach-sand.jpg" height="150" width="150" alt="">
-              <a class="card-link" href="#"></a>
-              <div class="card-img-overlay d-flex flex-column justify-content-between">
-                <p class="card-text text-uppercase text-shadow">
-                  <h3 id="titles_css">{{expenses[0].name}}</h3>
-                </p>
-                <p class="card-text text-white text-shadow align-bottom">
-                  Equal Pay, Share More!
-                </p>
-              </div>
-=======
+
 <div class="row text-center justify-content-center align-items-center">
   <div class="col">
-    <button type="button" class="btn btn-secondary btn-lg mr-auto" onclick="window.location.href='/userevents'">Back to Event</button>
+    <a href="/userevents">
+    <button type="button" class="btn btn-outline-light btn-lg mr-auto">Back to Event</button>
+  </a>
   </div>
   <div class="col-6">
     <div class="container">
@@ -39,17 +21,19 @@
             <a class="card-link" href="#"></a>
             <div class="card-img-overlay d-flex flex-column justify-content-between">
               <p class="card-text text-uppercase text-shadow">
-                <h3>{{expenses[0].name}}</h3>
+                <h3 id="titles_css">{{expenses[0].name}}</h3>
               </p>
               <p class="card-text text-white text-shadow align-bottom">
                 Equal Pay, Share More!
               </p>
->>>>>>> delete et update done
             </div>
+
           </div>
         </div>
       </div>
     </div>
+  </div>
+
 
   <div class="col">
 
@@ -115,139 +99,141 @@
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col">
-    <button type="button" class="btn btn-primary btn-lg mr-auto">&nbsp;Share&nbsp;</button>
-  </div>
-  <div class="col-9">
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-primary btn-lg mr-auto">&nbsp;Share&nbsp;</button>
+    </div>
+    <div class="col-9">
 
+    </br>
   </br>
-</br>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Description</th>
-          <th scope="col">Price</th>
-          <th scope="col">Paid by</th>
-          <th scope="col">Date</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for oneExpense in expenses %}
-        {% if oneExpense.description %}
-        <tr>
-          <td>{{oneExpense.description}}</td>
-          <td>{{oneExpense.amount/100}}€</td>
-          <td>{{oneExpense.nickname}}</td>
-          <td>{{oneExpense.date}}</td>
-          <td>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editModal">
-              <i class="fas fa-edit"></i>
-            </button>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Paid by</th>
+        <th scope="col">Date</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for oneExpense in expenses %}
+      {% if oneExpense.description %}
+      <tr>
+        <td>{{oneExpense.description}}</td>
+        <td>{{oneExpense.amount/100}}€</td>
+        <td>{{oneExpense.nickname}}</td>
+        <td>{{oneExpense.date.toISOString().slice(0,10)}}</td>
+        <td>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editModal">
+            <i class="fas fa-edit"></i>
+          </button>
 
-            <!-- Modal -->
-            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit an expense</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+          <!-- Modal -->
+          <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Edit an expense</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form action="/event/{{oneExpense.id}}/updateexpense" method="post">
+                    <div class="form-group">
+                      <label for="description">Expense name</label>
+                      <input type="text" value="{{oneExpense.description}}" class="form-control" id="editDescription" name="description" placeholder="Description">
+                    </div>
 
-                <form action="/event/{{oneExpense.id}}/updateexpense" method="post">
-                  <div class="form-group">
-                    <label for="description">Expense name</label>
-                    <input type="text" value="{{oneExpense.description}}" class="form-control" id="editDescription" name="description" placeholder="Description">
-                  </div>
+                    <div class="form-group">
+                      <label for="amount">How much ?</label>
+                      <input value="{{oneExpense.amount/100}}" type="number" step="any" class="form-control" id="editAmount" name="amount" placeholder="Price in €">
+                    </div>
 
-                  <div class="form-group">
-                    <label for="amount">How much ?</label>
-                    <input value="{{oneExpense.amount/100}}" type="number" step="any" class="form-control" id="editAmount" name="amount" placeholder="Price in €">
-                  </div>
+                    <div class="form-group">
+                      <label for="payer">Paid by</label>
+                      <select class="form-control" id="editPayer" name="payer">
+                        <option value="{{oneExpense.paid_by}}">{{oneExpense.nickname}}</option>
+                        {% for participant in participants %}
+                        <option value="{{participant.id}}">{{participant.nickname}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
 
-                  <div class="form-group">
-                    <label for="payer">Paid by</label>
-                    <select class="form-control" id="editPayer" name="payer">
-                      <option value="{{oneExpense.paid_by}}">{{oneExpense.nickname}}</option>
-                      {% for participant in participants %}
-                      <option value="{{participant.id}}">{{participant.nickname}}</option>
-                      {% endfor %}
-                    </select>
-                  </div>
+                    <div class="form-group">
+                      <label for="date">Date</label>
+                      <input type="date" class="form-control" id="editDate" name="date" value="{{oneExpense.date.toISOString().slice(0,10)}}">
+                    </div>
+                    <input type="hidden" name="expenseToUpdate" value="{{oneExpense.expensesid}}">
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </form>
 
-                  <div class="form-group">
-                    <label for="date">Date</label>
-                    <input type="date" class="form-control" id="editDate" name="date" value="{{oneExpense.date.toISOString().substr(0,10)}}">
-                  </div>
-                  <input type="hidden" name="expenseToUpdate" value="{{oneExpense.expensesid}}">
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                  </div>
-                </form>
 
+                </div>
 
               </div>
-
             </div>
+          </div>
             </td>
             <td>
 
               <!-- Button trigger modal -->
-            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#{{oneExpense.expensesid}}-delete">
-              <span class="text-danger"><i class="far fa-minus-square"></i>
-            </span></button>
+              <button type="button" class="btn btn-link" data-toggle="modal" data-target="#{{oneExpense.expensesid}}-delete">
+                <span class="text-danger"><i class="far fa-minus-square"></i>
+                </span></button>
 
-            <!-- Modal -->
-            <div class="modal fade" id="{{oneExpense.expensesid}}-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Delete Expense</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                  <center><img src="http://memeshappen.com/media/created/Are-you-sure---meme-32356.jpg" width="400" alt=""></center>
-                  </div>
-                  <div class="modal-footer">
+                <!-- Modal -->
+                <div class="modal fade" id="{{oneExpense.expensesid}}-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Delete Expense</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <center><img src="http://memeshappen.com/media/created/Are-you-sure---meme-32356.jpg" width="400" alt=""></center>
+                      </div>
+                      <div class="modal-footer">
 
-                    <form action="/event/{{oneExpense.id}}/deleteexpense" method="post">
-                      <input type="hidden" name="expenseToDelete" value="{{oneExpense.expensesid}}">
+                        <form action="/event/{{oneExpense.id}}/deleteexpense" method="post">
+                          <input type="hidden" name="expenseToDelete" value="{{oneExpense.expensesid}}">
 
                           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-success">Yes! Delete expense {{oneExpense.description}}!</button>
+                          <button type="submit" class="btn btn-success">Yes! Delete expense {{oneExpense.description}}!</button>
 
-                    </form>
+                        </form>
 
+                      </div>
+
+                    </div>
                   </div>
-
                 </div>
-              </div>
-            </div>
 
 
-          </td>
+              </td>
 
-    </tr>
-    {% endif %}
-    {% endfor %}
+            </tr>
+            {% endif %}
+            {% endfor %}
 
-</tbody>
-</table>
-  </div>
+          </tbody>
+        </table>
+      </div>
 
-  <div class="col">
-    <a href="/event/{{expenses[0].id}}/sumup">
-    <button type="button" class="btn btn-outline-light btn-lg"> Sum Up </button>
-  </a>
-  </div>
-</div>
-</div>
+      <div class="col">
+        <a href="/event/{{expenses[0].id}}/sumup">
+          <button type="button" class="btn btn-outline-light btn-lg"> Sum Up </button>
+        </a>
+      </div>
+    </div>
 
-{% endblock content %}
+    {% endblock content %}
