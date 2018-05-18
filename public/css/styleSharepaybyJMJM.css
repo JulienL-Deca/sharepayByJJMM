@@ -1,7 +1,7 @@
 body {
-    background-image: url("/images/homepage.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-image: url("/images/homepage.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .event-active {
@@ -41,6 +41,7 @@ color: rgba(0,0,0,1);
 color: rgba(0,0,0,1);
 
 }
+
 
 
 #titles_css {
