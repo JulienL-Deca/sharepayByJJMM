@@ -128,7 +128,7 @@ app.post(
   postExpense
 );
 
-app.get("/sumup", function (request, result) {
+app.get("/event/:id/sumup", function (request, result) {
   result.render("sumup");
 });
 
