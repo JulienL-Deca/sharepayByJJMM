@@ -113,7 +113,7 @@ app.get(
   getEvents
 );
 app.post(
-  "/userevents/newExpenses",
+  "/userevents/newEvent",
   require("connect-ensure-login").ensureLoggedIn("/"),
   postEvent
 );
