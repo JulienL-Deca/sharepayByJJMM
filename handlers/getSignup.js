@@ -33,7 +33,7 @@ function signup(request, result){
       });
     } else {
       client.end();
-      throw "account already existed"
+      return result.redirect("/accountexisted");
     }
   });
 }

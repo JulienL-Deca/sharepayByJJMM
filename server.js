@@ -78,6 +78,10 @@ app.get("/signup", function (request, result) {
 
 app.post("/signupUser", getSignup.signup);
 
+app.get("/accountexisted", function (request, result) {
+  result.render("accountexisted");
+});
+
 // home page where you will login
 app.get(
   "/",
