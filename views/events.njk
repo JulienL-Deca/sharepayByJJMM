@@ -123,13 +123,17 @@
     {% for oneEvent in events %}
     {% if oneEvent.status === true %}
     <div class="event-active card col-3 m-1 bg-info">
-    {% else %}
-    <div class="event-finished card col-3 m-1 bg-secondary">
-    {% endif %}
       <div class="card-body">
-        <p class="card-text"><a href="/event/{{oneEvent.id}}">{{oneEvent.name}} <i class="fas fa-chart-bar"></i></a></p>
+        <p class="card-text"><a href="/event/{{oneEvent.id}}">{{oneEvent.name}} <i class="fas fa-search"></i></a></p>
+        </div>
+    </div>
+      {% else %}
+    <div class="event-finished card col-3 m-1 bg-secondary">
+      <div class="card-body">
+        <p class="card-text"><a href="/event/{{oneEvent.id}}/sumup">{{oneEvent.name}} <i class="fas fa-chart-bar"></i></a></p>
       </div>
     </div>
+    {% endif %}
     {% endfor %}
   </div>
   <BR>
