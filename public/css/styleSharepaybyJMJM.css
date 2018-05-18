@@ -23,13 +23,32 @@ body {
 
 #page_expense {
   background-color: RGBA(0,0,0,0.5);
-  color: #ffffff;}
+  /* color: #ffffff;} */
+}
+
+#ModalNewExpense {
+color: rgba(0,0,0,1);
+
+}
+
+#editModal {
+color: rgba(0,0,0,1);
+
+}
+
+
+#deleteModal {
+color: rgba(0,0,0,1);
+
+}
 
 
 #titles_css {
   color: LightCoral;
-
+  font-family: "roboto";
 }
+
+
 
 
 /* #page_sumup {
