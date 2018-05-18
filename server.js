@@ -6,6 +6,7 @@ const getEvents = require("./handlers/getEvents");
 const getExpenses = require("./handlers/getExpenses");
 const getSignup = require("./handlers/getSignup");
 const postExpense = require("./handlers/postExpense");
+const updateExpense = require("./handlers/updateExpense");
 const usersFromDB = require("./handlers/getUsersFromDB");
 const postEvent = require("./handlers/postEvent");
 const postParticpant = require("./handlers/postParticipant");
@@ -127,6 +128,12 @@ app.post(
   "/event/:id/submitexpense",
   require("connect-ensure-login").ensureLoggedIn("/"),
   postExpense
+);
+
+app.post(
+  "/event/:id/updateexpense",
+  require("connect-ensure-login").ensureLoggedIn("/"),
+  updateExpense
 );
 
 app.get(

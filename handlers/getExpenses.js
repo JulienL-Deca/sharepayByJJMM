@@ -2,7 +2,7 @@ const PG = require("pg");
 
 const expenses = function(client, paramsId) {
     return client.query(
-      "SELECT expenses.description, expenses.amount, participants.nickname, expenses.date, events.name, events.id FROM events LEFT JOIN expenses ON (expenses.event_id = events.id) LEFT JOIN participants ON (participants.id = expenses.paid_by)WHERE events.id=$1::uuid",
+      "SELECT expenses.id AS expensesid, expenses.description, expenses.amount, participants.nickname, expenses.date, expenses.paid_by, events.name, events.id FROM events LEFT JOIN expenses ON (expenses.event_id = events.id) LEFT JOIN participants ON (participants.id = expenses.paid_by)WHERE events.id=$1::uuid",
       [paramsId])
       .catch((error) => {
         console.warn(error)
