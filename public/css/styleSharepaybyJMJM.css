@@ -22,9 +22,17 @@ body {
 }
 
 #page_expense {
-  background-color: RGBA(211,211,211,0.7);
+  background-color: RGBA(0,0,0,0.5);
+  color: #ffffff;}
+
+
+#titles_css {
+  color: red;
+
 }
-#page_sumup {
+
+
+/* #page_sumup {
   background-color: rgba(0, 0, 0, 0.5);
   color: #ffffff;}
-}
+} */

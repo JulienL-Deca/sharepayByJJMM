@@ -2,15 +2,15 @@
 
 {% block content %}
 <BR>
-<div class="container text-center" id="page_sumup">
+<div class="container text-center" id="page_expense">
   <div class="row text-center justify-content-center align-items-center">
     <div class="col-">
-      <button type="button" class="btn btn-secondary btn-lg mr-auto" onclick="window.location.href='../{{expenses[0].id}}'">Back to Event</button>
+      <button type="button" class="btn btn-outline-light btn-lg mr-auto" onclick="window.location.href='../{{expenses[0].id}}'">Back to Event</button>
     </div>
   </div>
   <div class="row text-center justify-content-center align-items-center">
     <div class="col">
-      <h2>Sum up</h2>
+      <div id="titles_css"><h2>Sum up</h2></div>
       <table class="table table-hover">
         <thead>
           <tr>
@@ -40,7 +40,7 @@
     </div>
   </div>
 <BR>
-  <div>
+  <div id="titles_css">
     <h2>List of all expenses<h2>
   </div>
   <div class="row text-center justify-content-center align-items-center">

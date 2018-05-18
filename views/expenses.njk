@@ -5,24 +5,25 @@
 </br>
 <div class="container" id="page_expense">
 </br>
-<div class="row text-center justify-content-center align-items-center">
-  <div class="col">
-    <button type="button" class="btn btn-secondary btn-lg mr-auto" onclick="window.location.href='../userevents'">Back to Event</button>
-  </div>
-  <div class="col-6">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 d-flex">
-          <div class="col p-0 card card-horizontal text-white">
-            <img class="card-img-top card-img-horizontal" src="https://www.scienceabc.com/wp-content/uploads/2017/02/Thailand-beach-sand.jpg" height="150" width="150" alt="">
-            <a class="card-link" href="#"></a>
-            <div class="card-img-overlay d-flex flex-column justify-content-between">
-              <p class="card-text text-uppercase text-shadow">
-                <h3>{{expenses[0].name}}</h3>
-              </p>
-              <p class="card-text text-white text-shadow align-bottom">
-                Equal Pay, Share More!
-              </p>
+  <div class="row text-center justify-content-center align-items-center">
+    <div class="col">
+      <button type="button" class="btn btn-outline-light btn-lg mr-auto" onclick="window.location.href='../userevents'">Back to Event</button>
+    </div>
+    <div class="col-6">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 d-flex">
+            <div class="col p-0 card card-horizontal text-white">
+              <img class="card-img-top card-img-horizontal" src="https://www.scienceabc.com/wp-content/uploads/2017/02/Thailand-beach-sand.jpg" height="150" width="150" alt="">
+              <a class="card-link" href="#"></a>
+              <div class="card-img-overlay d-flex flex-column justify-content-between">
+                <p class="card-text text-uppercase text-shadow">
+                  <h3 id="titles_css">{{expenses[0].name}}</h3>
+                </p>
+                <p class="card-text text-white text-shadow align-bottom">
+                  Equal Pay, Share More!
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -33,10 +34,10 @@
   <div class="col">
 
     <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">&nbsp;&nbsp;New Expense&nbsp;</button>
+    <button id="new_expense_button" type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#ModalNewExpense">&nbsp;&nbsp;New Expense&nbsp;</button>
 
     <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
+    <div id="ModalNewExpense" class="modal fade" role="dialog">
       <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -103,6 +104,7 @@
   </br>
 </br>
 
+<<<<<<< HEAD
 <table class="table table-hover">
   <thead>
     <tr>
@@ -145,6 +147,42 @@
                   <div class="form-group">
                     <label for="description">Expense name</label>
                     <input type="text" value="{{oneExpense.description}}" class="form-control" id="editDescription" name="description" placeholder="Description">
+=======
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Description</th>
+          <th scope="col">Price</th>
+          <th scope="col">Paid by</th>
+          <th scope="col">Date</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for oneExpense in expenses %}
+        {% if oneExpense.description %}
+        <tr>
+          <td>{{oneExpense.description}}</td>
+          <td>{{oneExpense.amount/100}}€</td>
+          <td>{{oneExpense.nickname}}</td>
+          <td>{{oneExpense.date}}</td>
+          <td>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editModal">
+              <i class="fas fa-edit"></i>
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit an expense</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+>>>>>>> new html style
                   </div>
 
                   <div class="form-group">
@@ -180,12 +218,12 @@
             <td>
 
               <!-- Button trigger modal -->
-            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModalCenter">
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#deleteModal">
               <span class="text-danger"><i class="far fa-minus-square"></i>
             </span></button>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -230,7 +268,7 @@
 
   <div class="col">
     <a href="/event/{{expenses[0].id}}/sumup">
-    <button type="button" class="btn btn-secondary btn-lg"> Sum Up </button>
+    <button type="button" class="btn btn-outline-light btn-lg"> Sum Up </button>
   </a>
   </div>
 </div>
