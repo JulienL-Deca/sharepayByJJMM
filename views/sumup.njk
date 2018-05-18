@@ -62,7 +62,7 @@
             <td>{{oneExpense.description}}</td>
             <td>{{oneExpense.amount/100}}€</td>
             <td>{{oneExpense.nickname}}</td>
-            <td>{{oneExpense.date}}</td>
+            <td>{{oneExpense.date.toISOString().slice(0,10)}}</td>
           </tr>
           {% endif %}
           {% endfor %}

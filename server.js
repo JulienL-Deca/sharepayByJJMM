@@ -149,7 +149,7 @@ app.post(
 
 app.get(
   "/event/:id/sumup",
-  // require("connect-ensure-login").ensureLoggedIn("/"),
+  require("connect-ensure-login").ensureLoggedIn("/"),
   getSumup
 );
 
