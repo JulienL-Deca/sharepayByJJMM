@@ -1,0 +1,18 @@
+Now, let's use our scenario with the library:
+
+const { createTransaction, payback } = require('./payback');
+
+const cinema = createTransaction('alice', 440, ['alice', 'bob', 'charlie', 'damian']);
+const food = createTransaction('bob', 450, ['bob', 'charlie', 'damian']);
+const taxi = createTransaction('charlie', 100, ['charlie', 'alice']);
+const drinks = createTransaction('damian', 150, ['damian', 'alice', 'bob']);
+const rentDamian = createTransaction('damian', 200, ['alice', 'bob', 'charlie', 'damian']);
+const rentCharlie = createTransaction('charlie', 400, ['alice', 'bob', 'charlie', 'damian']);
+
+const transactions = [cinema, food, taxi, drinks, rentDamian, rentCharlie];
+We created the transactions for each activities by specifying the owner, the amount and the participants.
+
+console.log(payback(transactions, ['alice', 'bob', 'charlie', 'damian']));
+[ { from: 'damian', to: 'alice', value: 80 },
+  { from: 'damian', to: 'charlie', value: 30 },
+  { from: 'bob', to: 'charlie', value: 10 } ]

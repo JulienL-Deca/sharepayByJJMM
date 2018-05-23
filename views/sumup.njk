@@ -21,21 +21,46 @@
           </tr>
         </thead>
         <tbody>
+          {% for onePayback in paybackObject%}
           <tr>
-            <td>Matt</td>
-            <td>10</td>
-            <td>Julien</td>
+            <td>{{onePayback.from}}</td>
+            <td>{{onePayback.value.toFixed(2)}} €</td>
+            <td>{{onePayback.to}}</td>
           </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+<BR>
+  <div id="titles_css">
+    <h2>List of all transactions<h2>
+  </div>
+  <div class="row text-center justify-content-center align-items-center">
+    <div class="col-">
+      <table class="table table-bordered table-hover table-striped">
+        <thead>
           <tr>
-            <td>Jiao</td>
-            <td>20</td>
-            <td>Matt</td>
+            <th>Name of event</th>
+            <th>Amount</th>
+            <th>Who paid</th>
+            <th>Who participate</th>
           </tr>
+        </thead>
+        <tbody>
+          {% for oneTransaction in transactionsToPrint%}
           <tr>
-            <td>Martin</td>
-            <td>50</td>
-            <td>Julien</td>
+              <td>{{oneTransaction[0]}}</td>
+              <td>{{oneTransaction[1] / 100}} €</td>
+              <td>{{oneTransaction[2]}}</td>
+              <td>
+              {% set comma = joiner() %}
+              {% for oneNickname in oneTransaction[3] -%}
+              {{comma()}} {{oneNickname}}
+              {%- endfor %}
+              </td>
           </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
